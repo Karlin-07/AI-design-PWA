@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Design Generator</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- PWA basics -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#6c5ce7" />
+</head>
+<body>
+
+  <header>
+    <h1>AI Design Generator</h1>
+    <p>Type an idea, and let AI create a design for you ✨</p>
+  </header>
+
+  <main>
+    <!-- Prompt input section -->
+    <section class="prompt-section">
+      <input
+        type="text"
+        id="promptInput"
+        placeholder="e.g. a red floral summer dress design"
+      />
+      <button id="generateBtn">Generate</button>
+    </section>
+
+    <!-- Loading indicator -->
+    <p id="loadingText" class="hidden">Generating your design with AI... this may take 10-20 seconds</p>
+
+    <!-- Result image -->
+    <section class="result-section">
+      <img id="resultImage" class="hidden" alt="Generated design" />
+      <a id="downloadLink" class="hidden" download="design.png">Download Image</a>
+    </section>
+
+    <!-- History gallery -->
+    <section class="history-section">
+      <h2>Your Past Designs</h2>
+      <div id="historyGallery" class="history-gallery">
+        <!-- history items will be added here by JS -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built as a learning project 🚀</p>
+  </footer>
+
+  <!-- Puter.js - free AI image generation, no API key needed -->
+  <script src="https://js.puter.com/v2/"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // Register service worker for offline support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('Service worker registered'))
+          .catch((err) => console.error('Service worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
